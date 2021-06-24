@@ -23,9 +23,24 @@
 
 <script>
 import {useLoginForm} from '@/use/login-form.js'
-
+import {error} from '@/utils/error.js'
+import {useStore} from 'vuex'
+import {useRoute} from 'vue-router'
 export default {
   setup() {
+    const store = useStore()
+    const route = useRoute()
+
+    if(route.query.message === 'auth') {
+      store.dispatch('setMessage', {
+        message: {
+          value: error(route.query.message),
+          title: 'Ошибка',
+          type: 'warning'
+        },
+        time: 10000
+      })
+    }
     return {
       ...useLoginForm()
     }

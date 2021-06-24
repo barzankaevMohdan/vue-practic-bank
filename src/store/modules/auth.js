@@ -21,13 +21,23 @@ export default {
     }
   },
   actions: {
-    async login({ commit }, payload) {
+    async login({ commit, dispatch }, payload) {
       try {
         const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.VUE_APP_FB_KEY}`
         const {data} = await axios.post(url, {...payload, returnSecureToken: true})
         commit('setToken', data.idToken)
+        dispatch('clearMessage', null, {root: true})
       } catch (e) {
-        console.log(error(e.response.data.error.message))
+        dispatch('setMessage', {
+          message: {
+            value: error(e.response.data.error.message),
+            title: 'Ошибка',
+            type: 'danger'
+          },
+          time: 5000
+        }, {root: true})
+        
+        throw new Error()
       }
     }
   },
