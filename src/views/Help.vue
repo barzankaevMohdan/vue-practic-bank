@@ -1,5 +1,12 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <app-page title="О странице">
+
+  </app-page>
 </template>
+
+<script>
+import AppPage from '../components/ui/AppPage'
+export default {
+  components: { AppPage }
+}
+</script>
