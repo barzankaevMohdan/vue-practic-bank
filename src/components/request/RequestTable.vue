@@ -12,13 +12,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+      <tr v-for="(request, idx) in requests" :key="request.id">
+        <td>{{ idx + 1 }}</td>
+        <td>{{ request.fio }}</td>
+        <td>{{ request.phone }}</td>
+        <td>{{ request.amount }}</td>
+        <td>{{ request.status }}</td>
+        <!-- <td>
+          <router-link v-slot="{navigate}" custom :to="{name: 'Request', params: {id: request.id}}">
+            <button class="btn primary" @click="navigate">Открыть</button>
+          </router-link>
+        </td> -->
       </tr>
     </tbody>
   </table>

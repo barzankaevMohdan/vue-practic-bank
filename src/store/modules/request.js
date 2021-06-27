@@ -33,9 +33,27 @@ export default {
         dispatch('setMessage', {
           message: {
             value: e.message,
+            title: 'Ошибка',
             type: 'danger'
           },
-          time : 5000
+          time : 10000
+        }, {root:true})
+      }
+    },
+    async load({ commit, dispatch }) {
+      try {
+        const token = store.getters['auth/token']
+        const {data} = await axios.get(`/requests.json?auth=${token}`)
+        const requests = Object.keys(data).map(id => ({...data[id], id}))
+        commit('setRequests', requests)
+      } catch (e) {
+        dispatch('setMessage', {
+          message: {
+            value: e.message,
+            title: 'Ошибка',
+            type: 'danger'
+          },
+          time : 10000
         }, {root:true})
       }
     }
