@@ -1,6 +1,6 @@
 <template>
   <div :class="['alert', message.type]" v-if="message">
-    <p class="alert-title">{{ message.title }}</p>
+    <p class="alert-title" v-if="message.title">{{ message.title }}</p>
     <p>{{ message.value}}</p>
     <span class="alert-close" @click="close">&times;</span>
   </div>

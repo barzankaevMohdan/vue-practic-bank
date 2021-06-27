@@ -34,10 +34,13 @@
 
 <script>
 import {useRequestForm} from '../../use/request-form'
+import {useStore} from 'vuex'
 export default {
   setup(_, {emit}) {
+    const store = useStore()
+    
     const submit = async values => {
-      console.log(values)
+      await store.dispatch('request/create', values)
       emit('created')
     }
 
