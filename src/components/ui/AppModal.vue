@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    emits: [close],
+    emits: ['close'],
     props: {
         title: {
             type: String
