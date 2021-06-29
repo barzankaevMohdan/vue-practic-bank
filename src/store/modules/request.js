@@ -72,6 +72,50 @@ export default {
           time : 10000
         }, {root:true})
       }
+    },
+    async remove({ dispatch }, id) {
+      try {
+        const token = store.getters['auth/token']
+        await axios.delete(`/requests/${id}.json?auth=${token}`)
+        dispatch('setMessage', {
+          message: {
+            value: 'Заявка удалена',
+            type: 'primary'
+          },
+          time : 5000
+        }, {root:true})
+      } catch (e) {
+        dispatch('setMessage', {
+          message: {
+            value: e.message,
+            title: 'Ошибка',
+            type: 'danger'
+          },
+          time : 10000
+        }, {root:true})
+      }
+    },
+    async update({ dispatch }, request) {
+      try {
+        const token = store.getters['auth/token']
+        await axios.put(`/requests/${request.id}.json?auth=${token}`, request)
+        dispatch('setMessage', {
+          message: {
+            value: 'Заявка обновлена',
+            type: 'primary'
+          },
+          time : 5000
+        }, {root:true})
+      } catch (e) {
+        dispatch('setMessage', {
+          message: {
+            value: e.message,
+            title: 'Ошибка',
+            type: 'danger'
+          },
+          time : 10000
+        }, {root:true})
+      }
     }
   },
   getters: {
