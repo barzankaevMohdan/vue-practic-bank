@@ -55,7 +55,7 @@ export default {
         return request
       })
       .filter(request => {
-        if (filter.value.status) {
+        if (filter.value.status && filter.value.status != 'default') {
           return filter.value.status === request.status
         }
         return request
