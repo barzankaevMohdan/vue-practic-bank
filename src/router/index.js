@@ -4,7 +4,7 @@ import Home from '../views/Home'
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'Home',
     component: Home,
     meta: {
@@ -33,7 +33,17 @@ const routes = [
   {
     path: '/auth',
     name: 'Auth',
+    alias: '/',
     component: () => import('../views/Auth.vue'),
+    meta: {
+      layout: 'auth',
+      auth: false
+    }
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import('../views/Register.vue'),
     meta: {
       layout: 'auth',
       auth: false

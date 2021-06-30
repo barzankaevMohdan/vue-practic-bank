@@ -1,6 +1,6 @@
 <template>
   <form class="card" @submit.prevent="onSubmit">
-      <h1>Войти в систему</h1>
+      <h1>Регистрация</h1>
 
       <div :class="['form-control', {invalid: eError}]">
           <label for="email">Email</label>
@@ -14,16 +14,16 @@
         <small v-if="pError">{{ pError }}</small>
       </div>
 
-      <button class="btn primary" :disabled="isSubmitting || isTooManyAttempts">Войти</button>
-      <a href="#" @click.prevent="register">Регистарция</a>
+      <button class="btn primary" :disabled="isSubmitting || isTooManyAttempts">Зарегистрироваться</button>
+      <a href="#" @click.prevent="auth">Войти</a>
       <div class="text-danger" v-if="isTooManyAttempts">
-        Лимит попыток входа в систему. Попробуйте позже
+        Лимит регийстраций. Попробуйте позже
       </div>
   </form>
 </template>
 
 <script>
-import {useLoginForm} from '@/use/login-form.js'
+import {useRegisterForm} from '@/use/register-form.js'
 import {error} from '@/utils/error.js'
 import {useStore} from 'vuex'
 import {useRoute, useRouter} from 'vue-router'
@@ -43,11 +43,10 @@ export default {
         time: 10000
       })
     }
-
     return {
-      ...useLoginForm(),
-      register: () => {
-        router.push('/register')
+      ...useRegisterForm(),
+      auth: () => {
+        router.push('/auth')
       }
     }
   }

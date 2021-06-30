@@ -19,12 +19,14 @@ export function useRequestForm (fn) {
     yup.string()
       .trim()
       .required('Телефон не может быть пустым')
+      .min(10, 'Введите корректный номер телефона')
+      .max(15, 'Введите корректный номер телефона')
   )
   const {value: amount, errorMessage: aError, handleBlur: aBlur} = useField(
     'amount',
-    yup.number()
+    yup.string()
+      .trim()
       .required('Введите сумму')
-      .min(1, 'Сумма не может быть меньше 0')
   )
   const {value: status} = useField('status')
 

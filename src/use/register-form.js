@@ -4,7 +4,7 @@ import {useField, useForm} from 'vee-validate'
 import {useStore} from 'vuex'
 import {useRouter} from 'vue-router'
 
-export function useLoginForm() {
+export function useRegisterForm() {
     const router = useRouter()
     const store = useStore()
     const {handleSubmit, isSubmitting, submitCount} = useForm()
@@ -39,7 +39,7 @@ export function useLoginForm() {
 
     const onSubmit = handleSubmit( async values => {
       try {
-        await store.dispatch('auth/login', values)
+        await store.dispatch('auth/register', values)
         router.push('/home')
       } catch (e) {
         return

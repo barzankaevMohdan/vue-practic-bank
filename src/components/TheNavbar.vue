@@ -3,7 +3,7 @@
     <h3>Tinkoff</h3>
       <ul class="navbar-menu">
         <li>
-          <router-link to="/">Заявки</router-link>
+          <router-link to="/home">Заявки</router-link>
         </li>
         <li>
             <router-link to="/help">Помощь</router-link>
